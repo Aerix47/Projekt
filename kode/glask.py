@@ -1,15 +1,11 @@
 from flask import Flask
-import mysql.connector 
+import mysql.connector
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.', static_url_path='')
 
 @app.route('/')
 def root():
-    return '<h1>her kommer det html!!!</h1>'
-
-@app.route('/annet')
-def annet():
-    return '<h1>wow wow</h1>'
+    return app.send_static_file('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
